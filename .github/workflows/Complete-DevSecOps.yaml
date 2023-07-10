@@ -43,18 +43,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-  snyk-security-scan:
-    runs-on: ubuntu-latest
-    needs: build-code
-    steps:
-      - uses: actions/checkout@master
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/maven@master
-        continue-on-error: true # To make sure that SARIF upload gets called
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: --sarif-file-output=snyk.sarif
+ # snyk-security-scan: EU estou utilizando MEND BOLT para code scaning e SCA
 
   dast-zap-scan:
     runs-on: ubuntu-latest
